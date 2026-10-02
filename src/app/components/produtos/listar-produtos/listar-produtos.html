@@ -18,11 +18,12 @@
         </thead>
 
         <tbody>
+            @for(prod of listaProdutos; track prod.id){
             <tr>
-                <td>1</td>
-                <td>Curso de Angular</td>
-                <td>21/12/2026</td>
-                <td>R$ 500,00</td>
+                <td>{{prod.id}}</td>
+                <td>{{prod.nome}}</td>
+                <td>{{prod.validade | date:'shortDate'}}</td>
+                <td>{{prod.precoProduto | currency : 'BRL'}}</td>
                 <td>
                     <button class="btn btn-warning">
                         <i class="fas fa-edit"></i>
@@ -33,7 +34,14 @@
                     </button>
                 </td>
             </tr>
+            } @empty {
+            <tr>
+                <td colspan="4"> Nenhum curso disponível no momento.</td>
+            </tr>
+            }
         </tbody>
+
+
     </table>
 
 
