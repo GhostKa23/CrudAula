@@ -10,6 +10,9 @@ export class ListarProdutos {
   listaStrings: string[] = ['Primeiro', 'Segundo', 'Terceiro'];
   listaNumeros: number[] = [15, 15.18, 100];
 
+  nomeCompleto: string = "Kaique Nunes";
+  nomeCompleto1: string = "Jhoel Santana";
+
   objetoModelo = {
     nome: 'Kaique',
     idade: 24,
