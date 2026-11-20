@@ -3,7 +3,8 @@
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-
+import { provideToastr } from 'ngx-toastr';
+import { provideHttpClient } from '@angular/common/http';
 registerLocaleData(localePt);
 
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
@@ -36,6 +37,8 @@ import { FormsModule } from '@angular/forms';
   providers: [
     provideBrowserGlobalErrorListeners(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    provideHttpClient(),
+     provideToastr()
   ],
   bootstrap: [App]
 })
