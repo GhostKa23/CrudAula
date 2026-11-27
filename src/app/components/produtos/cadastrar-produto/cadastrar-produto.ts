@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { IProdutos } from '../../../model/IProduto.model';
+import { Produtos } from '../../../services/produtos';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -7,15 +10,25 @@ import { Component } from '@angular/core';
   styleUrl: './cadastrar-produto.css',
 })
 export class CadastrarProduto {
-  nome: string = '';
-  validade: string = '';
-  preco: number = 0;
+  private produtosService = inject(Produtos);
+  private router = inject(Router);
+  produto: IProdutos = {
+    nome:'',
+    validade: new Date(),
+    precoProduto: 0
+  };
 
   salvarProduto(): void { 
-    console.log('Nome: ', this.nome);
-    console.log('Validade: ', this.validade);
-    console.log('Preço: ', this.preco);
-    alert('Salvo com sucesso!')
-  };
+   this.produtosService.cadastrar(this.produto).subscribe(retorno =>{
+    this.produto = retorno;
+    this.produtosService.exibirMensagem(
+      'Sistema',
+      `${this.produto.nome} foi cadastrado com sucesso. ID ${this.produto.id}`,
+      'toast-success'
+    );
+    this.router.navigate(['/produtos']);
+   });
+
+  }
 
 }

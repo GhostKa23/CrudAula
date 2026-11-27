@@ -18,6 +18,8 @@ import { Home } from './components/home/home';
 import { ListarProdutos } from './components/produtos/listar-produtos/listar-produtos';
 import { CadastrarProduto } from './components/produtos/cadastrar-produto/cadastrar-produto';
 import { FormsModule } from '@angular/forms';
+import { AtualizarProduto } from './components/produtos/atualizar-produto/atualizar-produto';
+import { provideSweetAlert2, SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -27,18 +29,26 @@ import { FormsModule } from '@angular/forms';
     Footer,
     Home,
     ListarProdutos,
-    CadastrarProduto
+    CadastrarProduto,
+    AtualizarProduto
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SwalComponent,
+    SwalDirective
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     provideHttpClient(),
-     provideToastr()
+     provideToastr(),
+     provideSweetAlert2({
+// Optionalconfiguration
+fireOnInit: false,
+dismissOnDestroy: true,
+}),
   ],
   bootstrap: [App]
 })
